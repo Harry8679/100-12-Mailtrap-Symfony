@@ -1,20 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello NewsletterController!{% endblock %}
+{% block title %}S'inscrire à la newsletter{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/admin/Desktop/Programming/EBANG_MEZUI/100-Symfony-Projects/12-mailtrap/src/Controller/NewsletterController.php</code></li>
-        <li>Your template at <code>/Users/admin/Desktop/Programming/EBANG_MEZUI/100-Symfony-Projects/12-mailtrap/templates/newsletter/index.html.twig</code></li>
-    </ul>
+<div class="text-center mb-10">
+    <p class="text-5xl mb-4">📧</p>
+    <h1 class="text-3xl font-extrabold text-gray-900 mb-2">Notre Newsletter</h1>
+    <p class="text-gray-400">Inscris-toi pour recevoir nos actualités directement dans ta boîte mail.</p>
 </div>
+
+<div class="bg-white border border-gray-200 rounded-2xl p-8 max-w-md mx-auto">
+
+    {{ form_start(form) }}
+
+        <div class="flex flex-col gap-5">
+
+            <div>
+                {{ form_label(form.prenom, null, {
+                    'label_attr': {'class': 'block text-sm font-medium text-gray-700 mb-1'}
+                }) }}
+                {{ form_widget(form.prenom) }}
+            </div>
+
+            <div>
+                {{ form_label(form.email, null, {
+                    'label_attr': {'class': 'block text-sm font-medium text-gray-700 mb-1'}
+                }) }}
+                {{ form_widget(form.email) }}
+                {{ form_errors(form.email) }}
+            </div>
+
+            <button type="submit"
+                    class="w-full bg-gray-900 text-white py-3 rounded-xl text-sm font-semibold hover:bg-gray-700">
+                S'inscrire gratuitement →
+            </button>
+
+        </div>
+
+    {{ form_end(form) }}
+
+    <p class="text-xs text-gray-400 text-center mt-4">
+        Pas de spam. Désabonnement en un clic.
+    </p>
+
+</div>
+
 {% endblock %}
