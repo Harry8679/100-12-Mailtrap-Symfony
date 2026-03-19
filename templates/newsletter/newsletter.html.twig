@@ -1,0 +1,61 @@
+{#
+    Template HTML de la newsletter envoyée aux abonnés
+    Variables : {{ abonne }}, {{ sujet }}, {{ contenu }}
+#}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body        { font-family: Arial, sans-serif; background: #f9fafb; margin: 0; padding: 0; }
+        .container  { max-width: 560px; margin: 40px auto; background: #ffffff; border-radius: 12px; overflow: hidden; }
+        .header     { background: #111827; padding: 32px; text-align: center; }
+        .header h1  { color: #ffffff; font-size: 20px; margin: 0; }
+        .header p   { color: #9ca3af; font-size: 13px; margin: 8px 0 0; }
+        .body       { padding: 32px; }
+        .body h2    { font-size: 20px; color: #111827; margin-top: 0; }
+        .body p     { color: #374151; line-height: 1.7; font-size: 14px; white-space: pre-wrap; }
+        .divider    { border: none; border-top: 1px solid #e5e7eb; margin: 24px 0; }
+        .footer     { background: #f3f4f6; padding: 16px 32px; text-align: center; }
+        .footer p   { color: #9ca3af; font-size: 12px; margin: 0; }
+        .footer a   { color: #6b7280; }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1>📧 Mon Site</h1>
+            <p>Notre newsletter</p>
+        </div>
+
+        <div class="body">
+
+            {% if abonne.prenom %}
+                <p style="color: #6b7280; font-size: 13px; margin-bottom: 16px;">
+                    Bonjour {{ abonne.prenom }},
+                </p>
+            {% endif %}
+
+            <h2>{{ sujet }}</h2>
+
+            {# nl2br convertit les sauts de ligne \n en <br> dans Twig #}
+            <p>{{ contenu|nl2br }}</p>
+
+        </div>
+
+        <hr class="divider">
+
+        <div class="footer">
+            <p>
+                Tu reçois cet email car tu t'es inscrit(e) à notre newsletter avec <strong>{{ abonne.email }}</strong>.
+                <br>
+                <a href="{{ url('app_newsletter_desabonner', { email: abonne.email }) }}">
+                    Se désabonner
+                </a>
+            </p>
+        </div>
+
+    </div>
+</body>
+</html>
